@@ -9,8 +9,8 @@ public class OrdersList {
         ordersList.add(order);
     }
 
-    void changeStatus(Order order, Status status) {
-        order.setStatus(status);
+    void createNewOrder(String name, int price) {
+        ordersList.add(new Order(ordersList.size() + 1, name, price, Status.PLACE_AN_ORDER));
     }
 
     void sortByName() {

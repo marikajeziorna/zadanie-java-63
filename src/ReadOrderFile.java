@@ -24,7 +24,7 @@ public class ReadOrderFile {
         Boolean end = false;
         Scanner scanner = new Scanner(System.in);
         while (end == false) {
-            System.out.print("Choose option between Sort or End. \n");
+            System.out.print("Choose option between Sort, Add, Change Status or End program. \n");
             String value = scanner.nextLine();
 
             if (value.equals("Sort")) {
@@ -43,6 +43,25 @@ public class ReadOrderFile {
                     default:
                         System.out.print("Invalid sorting.");
                         break;
+                }
+
+            } else if (value.equals("Add")) {
+                System.out.print("Choose name: ");
+                String name = scanner.nextLine();
+                System.out.print("Choose price: ");
+                int price = scanner.nextInt();
+                scanner.nextLine();
+                ordersList.createNewOrder(name, price);
+            } else if (value.equals("Status")) {
+                System.out.print("Choose order id: \n");
+                int id = Integer.parseInt(scanner.nextLine());
+                System.out.print("Choose status enum name: \n");
+                String status = scanner.nextLine();
+                Order order = ordersList.getOrdersList().get(id);
+                try {
+                    order.setStatus(Status.valueOf(status));
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Status is unknown.");
                 }
             } else if (value.equals("End")) {
                 end = true;
