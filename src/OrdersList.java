@@ -1,12 +1,31 @@
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class OrdersList {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    List<Order> ordersList = new ArrayList<>();
 
+    void add(Order order) {
+        ordersList.add(order);
     }
 
+    void changeStatus(Order order, Status status) {
+        order.setStatus(status);
+    }
 
+    void sortByName() {
+        Collections.sort(ordersList, new NameComparator());
+    }
 
+    void sortByPrice() {
+        Collections.sort(ordersList, new PriceComparator());
+    }
 
+    void sortByStatus() {
+        Collections.sort(ordersList, new StatusComparator());
+    }
+
+    public List<Order> getOrdersList() {
+        return ordersList;
+    }
 }

@@ -1,4 +1,3 @@
-id;name;price;status;
 01;T-shirt;25;PLACE_AN_ORDER;
 02;trousers;45;READY_TO_SEND;
 03;shoes;65;ON_WAY;
