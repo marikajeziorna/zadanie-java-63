@@ -1,0 +1,11 @@
+id;name;price;status;
+01;T-shirt;25;PLACE_AN_ORDER;
+02;trousers;45;READY_TO_SEND;
+03;shoes;65;ON_WAY;
+04;sweatshirt;44;RESOLVED;
+05;shirt;67;CANCELED;
+06;T-shirt;19;READY_TO_SEND;
+07;bracelet;33;ON_WAY;
+08;shoes;45;RESOLVED;
+09;earring;34;RESOLVED;
+10;bag;65;CANCELED;
