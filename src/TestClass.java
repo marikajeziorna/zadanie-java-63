@@ -8,27 +8,16 @@ public class TestClass {
     public static void main(String[] args) throws IOException {
         OrdersList ordersList = new OrdersList();
 
-        System.out.println("Order file contains: ");
-        FileReader fileReader = new FileReader("OrdersFile.csv");
-        BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            String[] position = line.split(";");
-            Order order = new Order(Integer.parseInt(position[0]), position[1], Integer.parseInt(position[2]), Status.valueOf(position[3]));
-            ordersList.add(order);
-        }
-        bufferedReader.close();
+        readOrdersListFromFile(ordersList);
         printOrdersList(ordersList.getOrdersList());
 
         Boolean end = false;
         Scanner scanner = new Scanner(System.in);
         while (end == false) {
-            System.out.print("Choose option between Sort, Add, Change Status or End program. \n");
+            System.out.print("Choose action which do you want to do with orders list: sort, add order, change status or ended program. Enter one of those values: Sort, Add, Status, End. \n");
             String value = scanner.nextLine();
-
             if (value.equals("Sort")) {
-                System.out.print("Choose option between Name or Price or Status. \n");
+                System.out.print("Choose an option by which do you want to sort, enter on of those values: Name, Price, Status \n");
                 String sorting = scanner.nextLine();
                 switch (sorting) {
                     case "Name":
@@ -46,16 +35,17 @@ public class TestClass {
                 }
 
             } else if (value.equals("Add")) {
-                System.out.print("Choose name: ");
+                System.out.print("Enter product name: ");
                 String name = scanner.nextLine();
-                System.out.print("Choose price: ");
+                System.out.print("Enter the price: ");
                 int price = scanner.nextInt();
                 scanner.nextLine();
                 ordersList.createNewOrder(name, price);
+
             } else if (value.equals("Status")) {
-                System.out.print("Choose order id: \n");
+                System.out.print("Choose order id which should be changes: \n");
                 int id = Integer.parseInt(scanner.nextLine());
-                System.out.print("Choose status enum name: \n");
+                System.out.print("Enter status: PLACE_AN_ORDER, READY_TO_SEND, ON_WAY, RESOLVED, CANCELED \n");
                 String status = scanner.nextLine();
                 Order order = ordersList.getOrdersList().get(id);
                 try {
@@ -66,11 +56,23 @@ public class TestClass {
             } else if (value.equals("End")) {
                 end = true;
             }
-            printOrdersList(ordersList.getOrdersList());
         }
     }
 
+    private static void readOrdersListFromFile(OrdersList ordersList) throws IOException {
+        FileReader fileReader = new FileReader("OrdersFile.csv");
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+            String[] position = line.split(";");
+            Order order = new Order(Integer.parseInt(position[0]), position[1], Integer.parseInt(position[2]), Status.valueOf(position[3]));
+            ordersList.add(order);
+        }
+        bufferedReader.close();
+    }
+
     private static void printOrdersList(List<Order> ordersList) {
+        System.out.println("Orders file contains: ");
         for (Order order : ordersList) {
             System.out.println("Id: " + order.getId() + ", Name: " + order.getName() + ", Price: " + order.getPrice() + ", Status: " + order.getStatus().getStatusName());
         }
