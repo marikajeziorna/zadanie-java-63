@@ -2,9 +2,9 @@ public class Order {
     private int id;
     private String name;
     private Status status;
-    private int price;
+    private double price;
 
-    public Order(int id, String name, int price, Status status) {
+    public Order(int id, String name, double price, Status status) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -27,7 +27,7 @@ public class Order {
         this.name = name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 

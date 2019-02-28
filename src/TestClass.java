@@ -49,7 +49,7 @@ public class TestClass {
                 System.out.print("Choose name product: ");
                 String name = scanner.nextLine();
                 System.out.print("Choose price for the product: ");
-                int price = scanner.nextInt();
+                double price = scanner.nextDouble();
                 scanner.nextLine();
                 ordersList.createNewOrder(name, price);
             } else if (value.equals("Status")) {
@@ -66,6 +66,7 @@ public class TestClass {
             } else if (value.equals("End")) {
                 end = true;
             }
+            printOrdersList(ordersList.getOrdersList());
         }
     }
 

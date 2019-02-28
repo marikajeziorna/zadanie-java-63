@@ -9,8 +9,9 @@ public class OrdersList {
         ordersList.add(order);
     }
 
-    void createNewOrder(String name, int price) {
-        ordersList.add(new Order(ordersList.size() + 1, name, price, Status.PLACE_AN_ORDER));
+    void createNewOrder(String name, double price) {
+        boolean newOrder = ordersList.add(new Order(ordersList.size() + 1, name, price, Status.PLACE_AN_ORDER));
+        System.out.println("New order was created:" + " " + newOrder);
     }
 
     void sortByName() {
