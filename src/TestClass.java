@@ -57,12 +57,17 @@ public class TestClass {
                 int id = Integer.parseInt(scanner.nextLine());
                 System.out.print("Choose status name: PLACE_AN_ORDER, READY_TO_SEND, ON_WAY, RESOLVED, CANCELED \n");
                 String status = scanner.nextLine();
-                Order order = ordersList.getOrdersList().get(id);
                 try {
-                    order.setStatus(Status.valueOf(status));
-                } catch (IllegalArgumentException e) {
-                    System.out.println("Status is unknown.");
+                    Order order = ordersList.getOrdersList().get(id);
+                    try {
+                        order.setStatus(Status.valueOf(status));
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("Status is unknown.");
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Item doesn't exist.");
                 }
+
             } else if (value.equals("End")) {
                 end = true;
             }
